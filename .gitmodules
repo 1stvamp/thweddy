@@ -1,0 +1,6 @@
+[submodule "twitter"]
+	path = twitter
+	url = git://github.com/henriklied/django-twitter-oauth.git
+[submodule "django"]
+	path = django
+	url = git://github.com/django/django.git
