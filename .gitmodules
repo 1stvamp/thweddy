@@ -4,3 +4,6 @@
 [submodule "django"]
 	path = django
 	url = git://github.com/django/django.git
+[submodule "thweddy/static/blueprint-css"]
+	path = thweddy/static/blueprint-css
+	url = git://github.com/joshuaclayton/blueprint-css.git
