@@ -1,5 +1,8 @@
 from django.http import HttpResponse
+from django.shortcuts import render_to_response, redirect
+from thweddy.main.models import *
 
 
 def home(request):
-    return HttpResponse('')
+    return render_to_response('main/index.html', {})
+
