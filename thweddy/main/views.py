@@ -4,5 +4,5 @@ from thweddy.main.models import *
 
 
 def home(request):
-    return render_to_response('main/index.html', {})
+    return render_to_response('main/home.html', {})
 
