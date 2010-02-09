@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response, redirect, get_object_or_404
 
 from thweddy.main.models import *
 from thweddy.main.forms import *
@@ -7,13 +7,13 @@ from thweddy.main.utils import get_api, user_login
 
 
 def home(request):
-    return render_to_response('main/home.html', {'form': form})
+    return render_to_response('main/home.html', {})
 
 def verify_auth(request):
     request.session['twitter_auth_verify_token'] = request.GET.get('oauth_verifier')
-    return redirect('thweddy.main.views.new')
+    return redirect('thweddy.main.views.new_thread')
 
-def new(request):
+def new_thread(request):
     api = get_api(request)
     if not api:
         return user_login(request)
@@ -38,4 +38,9 @@ def new(request):
             'formset': formset,
         }
     )
+
+def view_thread(request, id):
+    thread = get_object_or_404(Thread, pk=id)
+    return HttpResponse('')
+
 

@@ -1,7 +1,11 @@
-from django.conf.urls.defaults import *
+from django.views.decorators.cache import cache_page
+from django.conf.urls.defaults import patterns
 
-urlpatterns = patterns('thweddy.main',
-    (r'^$', 'views.home'),
-    (r'^verify-auth$', 'views.verify_auth'),
-    (r'^new$', 'views.new'),
+from thweddy.main.views import *
+
+urlpatterns = patterns('',
+    (r'^$', home),
+    (r'^verify-auth$', verify_auth),
+    (r'^new$', new_thread),
+    (r'^thread/(?P<id>\d+)$', cache_page(view_thread, 60 * 30)),
 )
