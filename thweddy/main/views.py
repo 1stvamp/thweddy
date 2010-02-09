@@ -7,7 +7,6 @@ from thweddy.main.utils import get_api, user_login
 
 
 def home(request):
-    form = TwitterUserForm()
     return render_to_response('main/home.html', {'form': form})
 
 def verify_auth(request):
@@ -19,5 +18,24 @@ def new(request):
     if not api:
         return user_login(request)
 
-    return render_to_response('main/home.html', {})
+    user = request.session.get('twitter_user', None)
+    if not user:
+        user = TwitterUser.objects.get_or_create(username=api.me().screen_name)
+        request.session['twitter_user'] = user
+
+    if request.method == 'POST':
+        form = ThreadForm(request.POST, user=user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = ThreadForm(user=user)
+        formset = TweetFormSet(queryset=Tweet.objects.none())
+
+    return render_to_response(
+        'main/new.html',
+        {
+            'form': form,
+            'formset': formset,
+        }
+    )
 
