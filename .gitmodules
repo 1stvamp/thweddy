@@ -7,3 +7,6 @@
 [submodule "thweddy/static/blueprint-css"]
 	path = thweddy/static/blueprint-css
 	url = git://github.com/joshuaclayton/blueprint-css.git
+[submodule "tweepy"]
+	path = tweepy
+	url = git://github.com/joshthecoder/tweepy.git
