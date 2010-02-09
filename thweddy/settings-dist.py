@@ -76,5 +76,4 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.humanize',
     'thweddy.main',
-    'twitter_app',
 )
