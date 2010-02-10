@@ -5,7 +5,7 @@ import re
 from thweddy.main.models import *
 
 class TweetForm(forms.ModelForm):
-    tweet_id = forms.CharField()
+    tweet_id = forms.CharField(label=u'Tweet ID or URL')
     class Meta:
         model = Tweet
 
