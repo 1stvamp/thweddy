@@ -8,7 +8,12 @@
     <script type="text/javascript" src="{% setting 'STATIC_URL' %}js/django-dynamic-formset/src/jquery.formset.js"></script>
     <script type="text/javascript">
         $(function() {
-                $('#thread_form p').formset();
+                $('#thread_form div#tweet_formsets p').formset({
+                    addCssClass: 'formset_add_button',
+                    deleteCssClass: 'formset_delete_button'
+                });
+                $('.formset_add_button').addClass('button positive');
+                $('.formset_delete_button').addClass('button negative');
         })
 </script>
 {% endblock %}
@@ -16,9 +21,13 @@
 {% block content %}
     <form method="post" id="thread_form">
         {{ formset.management_form }}
-        {% for form in formset.forms %}
+        <fieldset>
+            <div id="tweet_formsets">
+            {% for form in formset.forms %}
                 {{ form.as_p }}
-        {% endfor %}
-        <input type="submit" value="Thread it!" />
+                {% endfor %}
+            </div>
+            <p><input type="submit" value="Thread it!" id="thread_submit_button" /></p>
+        </fieldset>
     </form>
 {% endblock %}

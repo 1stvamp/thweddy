@@ -1,0 +1,13 @@
+#thread_form input#thread_submit_button {
+        margin-top: 1em;
+}
+
+#thread_form fieldset {
+        padding-bottom: 0;
+}
+
+#thread_form a.button {
+    float: none;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}

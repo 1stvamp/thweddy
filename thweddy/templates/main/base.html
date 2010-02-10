@@ -4,15 +4,27 @@
   {% load extras %}
   <head>
       <title>{% trans 'Thweddy' %} &mdash; {% block title %}{{title}}{% endblock %}</title>
-    <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/screen.css" type="text/css" media="screen, projection" />
-    <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/print.css" type="text/css" media="print" />
-    <!--[if lt IE 8]>
-        <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/ie.css" type="text/css" media="screen, projection" />
-    <![endif]-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-    {% block head %}{% endblock %}
+      <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/screen.css" type="text/css" media="screen, projection" />
+      <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/print.css" type="text/css" media="print" />
+      <!--[if lt IE 8]>
+          <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/ie.css" type="text/css" media="screen, projection" />
+      <![endif]-->
+      <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection" />
+      <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/plugins/buttons/screen.css" type="text/css" media="screen, projection" />
+      <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/main.css" type="text/css" media="screen, projection" />
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+      {% block head %}{% endblock %}
   </head>
   <body>
-      {% block content %}{% endblock %}
+      <div class="container">
+          <h1><span>Thweddy</span></h1>
+          <div class="span-15 prepend-1 colborder">
+              {% block content %}{% endblock %}
+          </div>
+          <div class="span-7 last">
+          </div>
+          <hr/>
+          <h3 class="alt">in ur tweets, thweading them</h3>
+      </div>
   </body>
 </html>
