@@ -45,3 +45,8 @@ def get_api(request):
     # API instance
     return tweepy.API(auth)
 
+
+def get_anon_api():
+    auth = tweepy.BasicAuthHandler(ANON_USER, ANON_PASS)
+    return tweepy.API(auth)
+

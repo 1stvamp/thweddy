@@ -1,9 +1,28 @@
 from django import forms
 from django.forms.models import modelformset_factory
+import re
 
 from thweddy.main.models import *
 
-TweetFormSet = modelformset_factory(Tweet, fields=('tweet_id',), extra=1)
+class TweetForm(forms.ModelForm):
+    tweet_id = forms.CharField()
+    class Meta:
+        model = Tweet
+
+    def clean_tweet_id(self):
+        tweet_id = self.cleaned_data.get('tweet_id', None)
+        try:
+            int(tweet_id)
+        except:
+            if 'status' in tweet_id:
+                m = re.search(r'/status/(\d+)', tweet_id)
+                if m and m.group(1):
+                    tweet_id = m.group(1)
+            else:
+                raise forms.ValidationError('Invalid Tweet ID or Twitter status URL')
+        return tweet_id
+
+TweetFormSet = modelformset_factory(Tweet, form=TweetForm, fields=('tweet_id',), extra=1)
 
 class ThreadForm(forms.ModelForm):
     username = forms.CharField(required=False)

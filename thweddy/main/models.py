@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib import admin
 import tweepy
 
-from thweddy.main.twitter.settings import *
+from thweddy.main.utils import get_anon_api
 
 
 class TwitterUser(models.Model):
@@ -16,17 +16,13 @@ class Tweet(models.Model):
         ordering = ('sort',)
 
     def original(self):
-        return _get_api().get_status(self.tweet_id)
+        return get_anon_api().get_status(self.tweet_id)
 
 
 class Thread(models.Model):
     user = models.ForeignKey('TwitterUser')
     tweets = models.ManyToManyField('Tweet')
 
-
-def _get_api():
-    auth = tweepy.BasicAuthHandler(ANON_USER, ANON_PASS)
-    return tweepy.API(auth)
 
 
 admin.site.register(TwitterUser)
