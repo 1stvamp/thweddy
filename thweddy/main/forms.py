@@ -3,7 +3,7 @@ from django.forms.models import modelformset_factory
 
 from thweddy.main.models import *
 
-TweetFormSet = modelformset_factory(Tweet)
+TweetFormSet = modelformset_factory(Tweet, fields=('tweet_id',)
 
 class ThreadForm(forms.ModelForm):
     username = forms.CharField(required=False)
