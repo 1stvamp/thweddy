@@ -19,3 +19,6 @@
 [submodule "thweddy/static/css/blueprint-css"]
 	path = thweddy/static/css/blueprint-css
 	url = git://github.com/joshuaclayton/blueprint-css.git
+[submodule "thweddy/static/js/jquery"]
+	path = thweddy/static/js/jquery
+	url = git://github.com/jquery/jquery.git
