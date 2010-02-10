@@ -14,7 +14,7 @@ class Tweet(models.Model):
 class Thread(models.Model):
     user = models.ForeignKey('TwitterUser')
     tweets = models.ManyToManyField('Tweet')
-
+    hash = models.CharField(max_length=255, default='', blank=True, null=True)
 
 
 admin.site.register(TwitterUser)
