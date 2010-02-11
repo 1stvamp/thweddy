@@ -1,14 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render_to_response, redirect, get_object_or_404
-from django.views.decorators.cache import cache_control
 
 from thweddy.main.models import *
 from thweddy.main.forms import *
 from thweddy.main.utils import get_api, user_login
 
-
-def home(request):
-    return render_to_response('main/home.html', {})
 
 def verify_auth(request):
     request.session['twitter_auth_verify_token'] = request.GET.get('oauth_verifier')
@@ -36,6 +32,9 @@ def new_thread(request):
                 thread.tweets.add(t)
                 i += 1
             thread.save()
+            # Invalidate my threads rendered template cache
+            if request.session.has_key('my-threads-render'):
+                del request.session['my-threads-render']
             return redirect('view-thread', id=thread.id)
     else:
         formset = TweetFormSet(queryset=Tweet.objects.none())
@@ -47,8 +46,30 @@ def new_thread(request):
         }
     )
 
+
 def view_thread(request, id):
     thread = get_object_or_404(Thread, pk=id)
     return render_to_response('main/view.html', {'thread': thread,})
+
+
+def latest_threads(request):
+    return render_to_response('main/latest.html', {'threads': threads,})
+
+
+def user_threads(request):
+    rendered = request.session.get('my-threads-render', None)
+    if rendered:
+        return rendered
+    else:
+        user = request.session.get('twitter_user', None)
+        if not user:
+            api = get_api(request)
+            if not api:
+                return user_login(request)
+
+            user = TwitterUser.objects.get_object_or_404(TwitterUser, username=api.me().screen_name)
+            request.session['twitter_user'] = user
+        request.session['my-threads-render'] = render_to_response('main/mine.html', {'user': user,})
+        return request.session['my-threads-render']
 
 

@@ -15,6 +15,7 @@ class Tweet(models.Model):
     class Meta:
         ordering = ('sort',)
 
+    @property
     def original(self):
         return get_anon_api().get_status(self.tweet_id)
 

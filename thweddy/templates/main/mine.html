@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% load extras %}
+
+{% block title %}{% trans 'My threads' %}{% endblock %}
+
+{% block content %}
+    <ol>
+        {% for thread in user.thread_set.all %}
+        <li>&#8220;{{ thread.tweets.all|first|get:"original"|get:"text"|truncatewords:"11" }}&#8221;</li>
+        {% endfor %}
+    </ol>
+{% endblock %}

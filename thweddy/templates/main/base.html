@@ -22,6 +22,20 @@
               {% block content %}{% endblock %}
           </div>
           <div class="span-7 last">
+              {% block sidebar %}
+                <ul>
+                    <li><a href="{% url home %}">Home</a></li>
+                    <li><a href="{% url new-thread %}">Create new thread</a></li>
+                    <li><a href="{% url latest-threads %}">Latest threads</a></li>
+                    <li><a href="{% url user-threads %}">My threads</a></li>
+                </ul>
+              {% endblock %}
+              {% block sub-sidebar %}
+              {% endblock %}
+          </div>
+          <div class="span-21 last">
+              {% block footer %}
+              {% endblock %}
           </div>
           <hr/>
           <h3 class="alt">in ur tweets, thwedding them</h3>
