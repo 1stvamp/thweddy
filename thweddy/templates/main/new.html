@@ -17,7 +17,8 @@
                 });
                 $('.formset-add-button').addClass('button positive');
                 $('.formset-delete-button').addClass('button negative');
-                $('.formset-add-button').after('<a href="#" class="button" id="lookup-tweet">Lookup thread</a>');
+                $('.formset-add-button').after('<a href="#" class="button" id="lookup-tweet">Lookup thread*</a>');
+                $('#lookup-footnote').show();
                 $('#lookup-tweet').click(function () {
                     //$('.formset-add-button').click();
                     var val = $('div#tweet_formsets p input').first().val();
@@ -44,6 +45,7 @@
                 {{ form.as_p }}
                 {% endfor %}
             </div>
+            <p id="lookup-footnote" class="alt hide">* Only works in reverse, e.g. enter the last tweet in the thread to look up other tweets.</p>
             <div><button type="submit" id="thread-submit-button" class="button">Thread it!</button></div>
         </fieldset>
     </form>
