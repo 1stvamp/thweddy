@@ -26,11 +26,12 @@ class TweetForm(forms.ModelForm):
 class BaseTweetFormset(forms.models.BaseModelFormSet):
     def clean(self):
         super(BaseTweetFormset, self).clean()
-        present = 0
+        at_least_one = False
         for form in self.forms:
             if hasattr(form, 'cleaned_data') and form.cleaned_data:
-                present += 1
-        if present == 0 and len(self.forms):
+                at_least_one = True
+                break
+        if at_least_one and len(self.forms):
             self.forms[0]._errors['tweet_id'] = ErrorList(['Must have at least one tweet!'])
             raise forms.ValidationError('Must have at least one tweet!')
 
