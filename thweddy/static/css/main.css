@@ -40,3 +40,7 @@ div#latest #side ul li a#latest-link,
 div#mine #side ul li a#mine-link {
         font-weight: bold;
 }
+
+ul.errorlist li {
+        color: #FF0000;
+}
