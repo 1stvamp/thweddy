@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.core import urlresolvers
 
 from thweddy.main.models import *
 from thweddy.main.forms import *
@@ -8,7 +9,11 @@ from thweddy.main.utils import get_api, user_login
 
 def verify_auth(request):
     request.session['twitter_auth_verify_token'] = request.GET.get('oauth_verifier')
-    return redirect('new-thread')
+    return_url = request.session.get('twitter_auth_return_url', None)
+    if return_url:
+        return redirect(return_url)
+    else:
+        return redirect('new-thread')
 
 def new_thread(request):
     api = get_api(request)
@@ -66,9 +71,10 @@ def user_threads(request):
         if not user:
             api = get_api(request)
             if not api:
+                request.session['twitter_auth_return_url'] = urlresolvers.reverse('user-threads')
                 return user_login(request)
 
-            user = TwitterUser.objects.get_object_or_404(TwitterUser, username=api.me().screen_name)
+            user = get_object_or_404(TwitterUser, username=api.me().screen_name)
             request.session['twitter_user'] = user
         request.session['my-threads-render'] = render_to_response('main/mine.html', {'user': user,})
         return request.session['my-threads-render']

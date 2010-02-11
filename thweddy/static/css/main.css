@@ -17,3 +17,27 @@
         float: right;
 }
 
+#side ul {
+        padding-left: 0.5em;
+        margin-top: 2ex;
+}
+#side ul li {
+        list-style: none;
+        border-top: 1px solid #EEE;
+        padding-top: 1ex;
+        padding-bottom: 1ex;
+        width: 15em;
+        padding-left: 4em;
+}
+#side ul li.last {
+        border-bottom: 1px solid #EEE;
+}
+#side ul li a {
+        text-decoration: none;
+}
+div#home #side ul li a#home-link,
+div#new #side ul li a#new-link,
+div#latest #side ul li a#latest-link,
+div#mine #side ul li a#mine-link {
+        font-weight: bold;
+}

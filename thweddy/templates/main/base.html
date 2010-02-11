@@ -16,24 +16,24 @@
       {% block head %}{% endblock %}
   </head>
   <body>
-      <div class="container">
-          <h1><span>Thweddy</span></h1>
-          <div class="span-15 prepend-1 colborder">
+      <div class="container" id="{% block current %}default{% endblock %}">
+          <h1 id="head"><span>Thweddy</span></h1>
+          <div class="span-15 prepend-1 colborder" id="content">
               {% block content %}{% endblock %}
           </div>
-          <div class="span-7 last">
+          <div class="span-7 last" id="side">
               {% block sidebar %}
                 <ul>
-                    <li><a href="{% url home %}">Home</a></li>
-                    <li><a href="{% url new-thread %}">Create new thread</a></li>
-                    <li><a href="{% url latest-threads %}">Latest threads</a></li>
-                    <li><a href="{% url user-threads %}">My threads</a></li>
+                    <li><a href="{% url home %}" id="home-link">Home</a></li>
+                    <li><a href="{% url new-thread %}" id="new-link">Create new thread</a></li>
+                    <li><a href="{% url latest-threads %}" id="latest-link">Latest threads</a></li>
+                    <li class="last"><a href="{% url user-threads %}" id="mine-link">My threads</a></li>
                 </ul>
               {% endblock %}
               {% block sub-sidebar %}
               {% endblock %}
           </div>
-          <div class="span-21 last">
+          <div class="span-21 last" id="foot">
               {% block footer %}
               {% endblock %}
           </div>
