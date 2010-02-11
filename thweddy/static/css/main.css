@@ -41,6 +41,7 @@ div#mine #side ul li a#mine-link {
         font-weight: bold;
 }
 
-ul.errorlist li {
+ul.errorlist {
+        margin-bottom: 0;
         color: #FF0000;
 }
