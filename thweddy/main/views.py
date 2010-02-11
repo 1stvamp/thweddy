@@ -53,6 +53,7 @@ def view_thread(request, id):
 
 
 def latest_threads(request):
+    threads = Thread.objects.all().order_by('-pk')[:20]
     return render_to_response('main/latest.html', {'threads': threads,})
 
 

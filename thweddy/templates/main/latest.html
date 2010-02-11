@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% load extras %}
+
+{% block title %}{% trans 'Latest threads' %}{% endblock %}
+
+{% block content %}
+    <ol>
+        {% for thread in threads %}
+        <li>&#8220;{{ thread.tweets.all|first|get:"original"|get:"text"|truncatewords:"11" }}&#8221;</li>
+        {% endfor %}
+    </ol>
+{% endblock %}
+
+{% block footer %}
+        <p>Updated every half-hour.</p>
+{% endblock %}
