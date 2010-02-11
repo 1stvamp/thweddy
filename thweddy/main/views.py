@@ -41,6 +41,8 @@ def new_thread(request):
             if request.session.has_key('my-threads-render'):
                 del request.session['my-threads-render']
             return redirect('view-thread', id=thread.id)
+        elif not formset.errors[0]:
+            print 'blah'
     else:
         formset = TweetFormSet(queryset=Tweet.objects.none())
 

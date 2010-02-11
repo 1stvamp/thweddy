@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.util import ErrorList
 from django.forms.models import modelformset_factory
 import re
 
@@ -19,10 +20,23 @@ class TweetForm(forms.ModelForm):
                 if m and m.group(1):
                     tweet_id = m.group(1)
             else:
-                raise forms.ValidationError('Invalid Tweet ID or Twitter status URL')
+                raise forms.ValidationError('Invalid Tweet ID or URL')
         return tweet_id
 
-TweetFormSet = modelformset_factory(Tweet, form=TweetForm, fields=('tweet_id',), extra=1)
+class BaseTweetFormset(forms.models.BaseModelFormSet):
+    def clean(self):
+        super(BaseTweetFormset, self).clean()
+        present = 0
+        for form in self.forms:
+            if hasattr(form, 'cleaned_data') and form.cleaned_data:
+                present += 1
+        if present == 0 and len(self.forms):
+            self.forms[0]._errors['tweet_id'] = ErrorList(['Must have at least one tweet!'])
+            raise forms.ValidationError('Must have at least one tweet!')
+
+TweetFormSet = modelformset_factory(Tweet, form=TweetForm,
+                                    formset=BaseTweetFormset,
+                                    fields=('tweet_id',), extra=1)
 
 class ThreadForm(forms.ModelForm):
     username = forms.CharField(required=False)
