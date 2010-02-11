@@ -8,13 +8,18 @@
         margin-left: 0.5em;
 }
 
-#thread_form a.formset-add-button {
+#thread_form a.formset-add-button,
+#thread_form a#lookup-tweet {
         text-align: center;
 }
 
 #thread_form button#thread-submit-button {
         margin-top: 1em;
         float: right;
+        background-color: #C1C1C1;
+}
+#thread_form button#thread-submit-button:hover {
+        background-color: #ABABAB;
 }
 
 #side ul {

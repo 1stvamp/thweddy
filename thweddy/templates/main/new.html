@@ -11,10 +11,13 @@
         $(function() {
                 $('#thread_form div#tweet_formsets p').formset({
                     addCssClass: 'formset-add-button',
-                    deleteCssClass: 'formset-delete-button'
+                    deleteCssClass: 'formset-delete-button',
+                    addText: 'Add',
+                    deleteText: 'Delete'
                 });
                 $('.formset-add-button').addClass('button positive');
                 $('.formset-delete-button').addClass('button negative');
+                $('.formset-add-button').after('<a href="#" class="button" id="lookup-tweet">Lookup thread</a>');
         })
 </script>
 {% endblock %}
