@@ -1,7 +1,6 @@
 from django import forms
 from django.forms.util import ErrorList
 from django.forms.models import modelformset_factory
-import re
 
 from thweddy.main.models import *
 
@@ -15,11 +14,8 @@ class TweetForm(forms.ModelForm):
         try:
             int(tweet_id)
         except:
-            if 'status' in tweet_id:
-                m = re.search(r'/status/(\d+)', tweet_id)
-                if m and m.group(1):
-                    tweet_id = m.group(1)
-            else:
+            tweet_id = parse_tweet_id(tweet_id)
+            if not tweet_id:
                 raise forms.ValidationError('Invalid Tweet ID or URL')
         return tweet_id
 

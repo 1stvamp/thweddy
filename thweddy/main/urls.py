@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^thread/(?P<id>\d+)$', cache_page(view_thread, 60 * 30), name='view-thread'),
     url(r'^latest$', cache_page(latest_threads, 60 * 30), name='latest-threads'),
     url(r'^mine$', user_threads, name='user-threads'),
+    url(r'^ajax/lookup-thread$', ajax_lookup_thread, name='ajax-lookup-thread'),
 )

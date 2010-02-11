@@ -4,7 +4,8 @@ from django.core import urlresolvers
 
 from thweddy.main.models import *
 from thweddy.main.forms import *
-from thweddy.main.utils import get_api, user_login
+from thweddy.main.utils import *
+from thweddy.main.decorators import jsonify
 
 
 def verify_auth(request):
@@ -81,4 +82,34 @@ def user_threads(request):
         request.session['my-threads-render'] = render_to_response('main/mine.html', {'user': user,})
         return request.session['my-threads-render']
 
+
+@jsonify
+def ajax_lookup_thread(request):
+    tweet_id = request.GET.get('tweet_id', None)
+    try:
+        int(tweet_id)
+    except:
+        tweet_id = parse_tweet_id(tweet_id)
+
+    if not tweet_id:
+        return ''
+
+    api = get_api(request)
+    if not api:
+        api = get_anon_api(request)
+
+    thread = [tweet_id]
+    tweet = api.get_status(tweet_id)
+    if tweet:
+        if tweet.in_reply_to_status_id:
+            t = api.get_status(tweet.in_reply_to_status_id)
+            while t:
+                thread.append(t.id)
+                if t.in_reply_to_status_id:
+                    t = api.get_status(t.in_reply_to_status_id)
+                else:
+                    t = False
+
+    thread.reverse()
+    return thread
 

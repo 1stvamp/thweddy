@@ -1,3 +1,4 @@
+import re
 import tweepy
 from django.shortcuts import redirect
 
@@ -49,4 +50,13 @@ def get_api(request):
 def get_anon_api():
     auth = tweepy.BasicAuthHandler(ANON_USER, ANON_PASS)
     return tweepy.API(auth)
+
+
+def parse_tweet_id(id):
+    tweet_id = None
+    if 'status' in id:
+        m = re.search(r'/status/(\d+)', id)
+        if m and m.group(1):
+            tweet_id = m.group(1)
+    return tweet_id
 
