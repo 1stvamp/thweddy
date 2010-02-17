@@ -3,6 +3,7 @@ from django.forms.util import ErrorList
 from django.forms.models import modelformset_factory
 
 from thweddy.main.models import *
+from thweddy.main.utils import *
 
 class TweetForm(forms.ModelForm):
     tweet_id = forms.CharField(label=u'Tweet ID or URL')

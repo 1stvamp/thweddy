@@ -77,8 +77,11 @@ def user_threads(request):
                 request.session['twitter_auth_return_url'] = urlresolvers.reverse('user-threads')
                 return user_login(request)
 
-            user = get_object_or_404(TwitterUser, username=api.me().screen_name)
-            request.session['twitter_user'] = user
+            try:
+                user = TwitterUserobjects.get(username=api.me().screen_name)
+                request.session['twitter_user'] = user
+            except TwitterUser.DoesNotExist:
+                user = None
         request.session['my-threads-render'] = render_to_response('main/mine.html', {'user': user,})
         return request.session['my-threads-render']
 
