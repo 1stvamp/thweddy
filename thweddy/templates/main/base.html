@@ -12,10 +12,12 @@
       <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection" />
       <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/blueprint-css/blueprint/plugins/buttons/screen.css" type="text/css" media="screen, projection" />
       <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/main.css" type="text/css" media="screen, projection" />
+      <link rel="stylesheet" href="{% setting 'STATIC_URL' %}css/boxes.css" type="text/css" media="screen, projection" />
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
       {% block head %}{% endblock %}
   </head>
   <body>
+      <a href="http://github.com/1stvamp/thweddy/" title="Get the source code to Thweddy" class="get-source"><span>Get the source</span></a>
       <div class="container" id="{% block current %}default{% endblock %}">
           <h1 id="head"><span>Thweddy</span></h1>
           <div class="span-15 prepend-1 colborder" id="content">

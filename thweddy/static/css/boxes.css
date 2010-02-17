@@ -1,0 +1,89 @@
+/* Blue */
+/* set the image to use and establish the lower-right position */
+.bluebox, .bluebox_body, .bluebox_head, .bluebox_head h2 {
+	background:  transparent url("/images/blue_box.png") no-repeat bottom right;
+}
+.bluebox {
+	/* intended total box width - padding-right(next) */
+	width: 335px !important;
+      /* IE Win = width - padding */
+	width:  320px;
+	/* the gap on the right edge of the image (not content padding) */
+	padding-right: 15px;
+	/* use to position the box */
+	margin: 20px auto;
+}
+/* set the top-right image */
+.bluebox_head {
+	background-position: top right;
+	/* pull the right image over on top of border */
+	margin-right: -15px;
+	/* right-image-gap + right-inside padding */
+	padding-right: 40px;
+}
+/* set the top-left image */
+.bluebox_head h2 {
+	background-position: top left;
+	margin: 0;
+	/* reset main site styles*/
+	border: 0;
+	/* ditto */
+	/* padding-left = image gap + interior padding ... no padding-right */
+	padding: 25px 0 15px 40px;
+	height: auto !important;
+	height: 1%;
+}
+/* IE Holly Hack */
+/* set the lower-left corner image */
+.bluebox_body {
+	background-position: bottom left;
+	margin-right: 25px;
+	/* interior-padding right */
+	padding: 15px 0 15px 40px;
+}
+/* mirror .bluebox_head right/left */
+
+/* Purple */
+/* set the image to use and establish the lower-right position */
+.purplebox, .purplebox_body, .purplebox_head, .purplebox_head h2 {
+	background:  transparent url("/images/purple_box.png") no-repeat bottom right;
+}
+.purplebox {
+	/* intended total box width - padding-right(next) */
+	width: 335px !important;
+      /* IE Win = width - padding */
+	width:  320px;
+	/* the gap on the right edge of the image (not content padding) */
+	padding-right: 15px;
+	/* use to position the box */
+	margin: 20px auto;
+}
+/* set the top-right image */
+.purplebox_head {
+	background-position: top right;
+	/* pull the right image over on top of border */
+	margin-right: -15px;
+	/* right-image-gap + right-inside padding */
+	padding-right: 40px;
+}
+/* set the top-left image */
+.purplebox_head h2 {
+	background-position: top left;
+	margin: 0;
+	/* reset main site styles*/
+	border: 0;
+	/* ditto */
+	/* padding-left = image gap + interior padding ... no padding-right */
+	padding: 25px 0 15px 40px;
+	height: auto !important;
+	height: 1%;
+}
+/* IE Holly Hack */
+/* set the lower-left corner image */
+.purplebox_body {
+	background-position: bottom left;
+	margin-right: 25px;
+	/* interior-padding right */
+	padding: 15px 0 15px 40px;
+}
+/* mirror .purplebox_head right/left */

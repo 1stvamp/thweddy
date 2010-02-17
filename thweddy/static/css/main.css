@@ -50,3 +50,20 @@ ul.errorlist {
         margin-bottom: 0;
         color: #FF0000;
 }
+
+.get-source {
+        height: 90px;
+        width: 79px;
+        float: left;
+        top: 0px;
+	left: 0px;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+        background-image: url('../images/code_corner.png');
+        background-position: top left;
+        background-repeat: no-repeat;
+
+}
+.get-source span {
+        display: none;
+}
