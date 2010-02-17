@@ -67,3 +67,21 @@ ul.errorlist {
 .get-source span {
         display: none;
 }
+
+.purplebox {
+        margin-left: 15em;
+}
+.bluebox {
+        margin-left: 5em;
+}
+
+.bluebox_head h2,
+.purplebox_head h2 {
+        padding-left: 0.5em;
+        padding-bottom: 0;
+}
+
+.bluebox_body,
+.purplebox_body {
+        margin-right: 0.5em;
+}

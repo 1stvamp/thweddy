@@ -12,12 +12,16 @@ class TwitterUser(models.Model):
 class Tweet(models.Model):
     tweet_id = models.CharField(max_length=255)
     sort = models.IntegerField()
+    _original = None
+
     class Meta:
         ordering = ('sort',)
 
     @property
     def original(self):
-        return get_anon_api().get_status(self.tweet_id)
+        if not  self._original:
+            self._original = get_anon_api().get_status(self.tweet_id)
+        return self._original
 
 
 class Thread(models.Model):

@@ -1,7 +1,7 @@
 /* Blue */
 /* set the image to use and establish the lower-right position */
 .bluebox, .bluebox_body, .bluebox_head, .bluebox_head h2 {
-	background:  transparent url("/images/blue_box.png") no-repeat bottom right;
+	background:  transparent url("../images/blue_box.png") no-repeat bottom right;
 }
 .bluebox {
 	/* intended total box width - padding-right(next) */
@@ -46,7 +46,7 @@
 /* Purple */
 /* set the image to use and establish the lower-right position */
 .purplebox, .purplebox_body, .purplebox_head, .purplebox_head h2 {
-	background:  transparent url("/images/purple_box.png") no-repeat bottom right;
+	background:  transparent url("../images/purple_box.png") no-repeat bottom right;
 }
 .purplebox {
 	/* intended total box width - padding-right(next) */

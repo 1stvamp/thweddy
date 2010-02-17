@@ -8,7 +8,9 @@
 {% block content %}
     <ol>
         {% for thread in user.thread_set.all %}
-        <li>&#8220;{{ thread.tweets.all|first|get:"original"|get:"text"|truncatewords:"11" }}&#8221;</li>
+            <li>&#8220;<a href="{% url view-thread thread.id %}">{{ thread.tweets.all|first|get:"original"|get:"text"|truncatewords:"11" }}</a>&#8221;</li>
+        {% empty %}
+            <li>Sorry, you don't seem to have made any threads. Why not <a href="{% url new-thread %}">create one</a>?</li>
         {% endfor %}
     </ol>
 {% endblock %}

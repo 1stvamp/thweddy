@@ -6,11 +6,13 @@
 {% block current %}latest{% endblock %}
 
 {% block content %}
-    <ol>
+    <ul>
         {% for thread in threads %}
-        <li>&#8220;{{ thread.tweets.all|first|get:"original"|get:"text"|truncatewords:"11" }}&#8221;</li>
+        <li>{{ thread.id }}. &#8220;<a href="{% url view-thread thread.id %}">{{ thread.tweets.all|first|get:"original"|get:"text"|truncatewords:"11" }}</a>&#8221;</li>
+        {% empty %}
+            <li>Sorry, there don't seem to be any threads. Why not <a href="{% url new-thread %}">create one</a>?</li>
         {% endfor %}
-    </ol>
+    </ul>
 {% endblock %}
 
 {% block footer %}

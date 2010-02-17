@@ -6,9 +6,14 @@
 {% block current %}thread{% endblock %}
 
 {% block content %}
-    <ol>
     {% for t in thread.tweets.all %}
-        <li>{{ t.original.text }}</li>
+        <div class="{% cycle 'bluebox' 'purplebox' %}">
+            <div class="{% cycle 'bluebox' 'purplebox' %}_head">
+                <h2 class="alt">@<a href="http://www.twitter.com/{{ t.original.user.screen_name }}" title="{{ t.original.user.name }}">{{ t.original.user.screen_name }}</a></h2>
+            </div>
+            <div class="{% cycle 'bluebox' 'purplebox' %}_body">
+                <p>{{ t.original.text|urlize }}</p>
+            </div>
+        </div>
     {% endfor %}
-    </ol>
 {% endblock %}
