@@ -85,3 +85,12 @@ ul.errorlist {
 .purplebox_body {
         margin-right: 0.5em;
 }
+
+.throbber {
+        margin-left: auto;
+        margin-right: auto;
+        width: 16px;
+        height: 16px;
+        background-image: url('../images/throbber.gif');
+        background-repeat: no-repeat;
+}

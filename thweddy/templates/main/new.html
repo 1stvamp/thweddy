@@ -15,6 +15,7 @@
                     addText: 'Add',
                     deleteText: 'Delete'
                 });
+                $('#tweet_formsets p input:first').after('<div class="throbber hide"></div>');
                 $('.formset-add-button').addClass('button positive');
                 $('.formset-delete-button').addClass('button negative');
                 $('.formset-add-button').after('<a href="#" class="button" id="lookup-tweet">Lookup thread *</a>');
@@ -22,12 +23,13 @@
                 $('#lookup-tweet').click(function () {
                     var val = $('div#tweet_formsets p input').first().val();
                     if (val) {
+                        $('div.throbber:first').show();
                         $.getJSON(
                             "{% url ajax-lookup-thread %}",
                             {'tweet_id': val},
                             function (data) {
+                                $('div.throbber:first').hide();
                                 offset = data.length - $('div#tweet_formsets p input:text').length;
-                                console.log(data.length + ', ' + $('div#tweet_formsets p input:text').length + ', '  + offset);
                                 if (offset > 0) {
                                     for (var i = 0; i < offset; i++) {
                                         $('.formset-add-button').click();
