@@ -20,14 +20,23 @@
                 $('.formset-add-button').after('<a href="#" class="button" id="lookup-tweet">Lookup thread*</a>');
                 $('#lookup-footnote').show();
                 $('#lookup-tweet').click(function () {
-                    //$('.formset-add-button').click();
                     var val = $('div#tweet_formsets p input').first().val();
                     if (val) {
                         $.getJSON(
                             "{% url ajax-lookup-thread %}",
                             {'tweet_id': val},
                             function (data) {
-                                alert(data);
+                                offset = data.length - $('div#tweet_formsets p input:text').length;
+                                console.log(data.length + ', ' + $('div#tweet_formsets p input:text').length + ', '  + offset);
+                                if (offset > 0) {
+                                    for (var i = 0; i < offset; i++) {
+                                        $('.formset-add-button').click();
+                                    }
+                                }
+                                inputs = $('div#tweet_formsets p input:text');
+                                $.each(data, function (i, tweet_id) {
+                                    $(inputs[i]).val(tweet_id);
+                                });
                             }
                         );
                     }

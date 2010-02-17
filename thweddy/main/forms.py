@@ -27,7 +27,7 @@ class BaseTweetFormset(forms.models.BaseModelFormSet):
             if hasattr(form, 'cleaned_data') and form.cleaned_data:
                 at_least_one = True
                 break
-        if at_least_one and len(self.forms):
+        if not at_least_one and len(self.forms):
             self.forms[0]._errors['tweet_id'] = ErrorList(['Must have at least one tweet!'])
             raise forms.ValidationError('Must have at least one tweet!')
 
