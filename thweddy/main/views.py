@@ -4,7 +4,7 @@ from django.core import urlresolvers
 
 from thweddy.main.models import *
 from thweddy.main.forms import *
-from thweddy.main.utils import *
+from thweddy.main.twitter.utils import *
 from thweddy.main.decorators import jsonify
 
 

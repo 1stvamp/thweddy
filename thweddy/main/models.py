@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib import admin
 import tweepy
 
-from thweddy.main.utils import get_anon_api
+from thweddy.main.twitter.utils import get_anon_api
 
 
 class TwitterUser(models.Model):
