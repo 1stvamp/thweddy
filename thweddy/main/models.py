@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib import admin
 import tweepy
 
 from thweddy.main.twitter.utils import get_anon_api
@@ -29,7 +28,3 @@ class Thread(models.Model):
     tweets = models.ManyToManyField('Tweet')
 
 
-
-admin.site.register(TwitterUser)
-admin.site.register(Tweet)
-admin.site.register(Thread)
