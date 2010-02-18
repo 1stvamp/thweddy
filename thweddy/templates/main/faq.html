@@ -12,22 +12,25 @@
         <li><a href="#access">Why do I need to login to Twitter?</a></li>
         <li><a href="#bugs">It broke!</a></li>
         <li><a href="#code">Can I install Thweddy on my server?</a></li>
+        <li><a href="#who">Who are you?</a></li>
     </ul>
     <hr/>
     <dl>
         <dt id="what" name="what">What's it do?</dt>
-        <dd>Blah blah blah</dd>
+        <dd>It makes threads of tweets, so you can send a full conversation to someone else (or include it in another tweet) to people rather than copying and pasting half a dozen different URLs for each one.</dd>
         <dt id="why" name="why">Why did you make Thweddy?</dt>
-        <dd>Blah blah blah</dd>
+        <dd>It looked like a fun idea to implement, other <a href="#twonvo">solutions</a> didn't seem up to scratch, and I like a challenge. Not to mention it itches my own scratch regards sending a conversation, made up of individual tweets, to other people.</dd>
         <dt id="forward-lookup" name="forward-lookup">Can I look up threads from the first tweet?</dt>
-        <dd>Blah blah blah</dd>
+        <dd>Unfortunately no, this is because you literally <a href="http://code.google.com/p/twitter-api/issues/detail?id=142">can't do this</a> using the <a href="http://apiwiki.twitter.com/">Twitter <abbr title="Application Programming Interface">API</abbr></a> at the moment, but this will hopefully change in <a href="http://apiwiki.twitter.com/V2-Roadmap">version 2</a>.</dd>
         <dt id="twonvo" name="twonvo">Doesn't Twonvo already do this?</dt>
-        <dd>Blah blah blah</dd>
+        <dd>Yes, <a href="http://www.twonvo.com/">Twonvo</a> does attempt to solve the same problem, but I personally feel <em>Thweddy</em> is a nicer solution, I have fun working on it, and it's <a href="http://www.gnu.org/philosophy/free-sw.html">free as in speech</a>.</dd>
         <dt id="access" name="access">Why do I need to login to Twitter?</dt>
-        <dd>Blah blah blah</dd>
+        <dd>Thweddy doesn't store your login credentials, or any login credentials, so we need a way to tie threads back to you. Also some tweets are private on twitter and only viewable if allowed by the author, in which case we need to use your login to access them.</dd>
         <dt id="bugs" name="bugs">It broke!</dt>
-        <dd>Blah blah blah</dd>
+        <dd>Well now, you can either <a href="http://github.com/1stvamp/thweddy/issues">tell me about</a> and I'll try to get round to fixing it, or you can <a href="http://github.com/1stvamp/thweddy/fork">fix it yourself</a>.</dd>
         <dt id="code" name="code">Can I install Thweddy on my server?</dt>
-        <dd>Blah blah blah</dd>
+        <dd>Sure, it's <a href="http://www.opensource.org/">open source</a>, you can grab the <a href="http://github.com/1stvamp/thweddy/">code</a> and do whatever you like with it.</dd>
+        <dt id="who" name="who">Who are you?</dt>
+        <dd>Wes Mason, aka <a href="http://1stvamp.org/">1stvamp</a>, you can <a href="http://twitter.com/1stvamp">follow me</a> if you like.</dd>
     </dl>
 {% endblock %}
