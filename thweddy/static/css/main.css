@@ -96,3 +96,16 @@ ul.errorlist {
         background-image: url('../images/throbber.gif');
         background-repeat: no-repeat;
 }
+
+div#faq div#content ul {
+        margin-left: 0;
+        padding-left: 0;
+        list-style: none;
+}
+div#faq div#content ul li {
+    margin-bottom: 0.5ex;
+}
+
+div#faq div#content dl dd {
+        margin-bottom: 2ex;
+}
