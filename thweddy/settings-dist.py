@@ -43,7 +43,7 @@ STATIC_DOC_ROOT = path.join(BASE_DIR, 'static')
 MEDIA_URL = '/static/'
 STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/media/'
-ADMIN_URL = r'^admin$'
+ADMIN_URL = r'^admin/$'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '=8@f1tts9b@2%+4&v*s6*#mi(89j0cn4)xw(vus^ywefo5njw='
