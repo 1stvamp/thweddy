@@ -40,9 +40,11 @@
         text-decoration: none;
 }
 div#home #side ul li a#home-link,
+div#faq #side ul li a#faq-link,
 div#new #side ul li a#new-link,
 div#latest #side ul li a#latest-link,
-div#mine #side ul li a#mine-link {
+div#mine #side ul li a#mine-link,
+#side ul li a:hover {
         font-weight: bold;
 }
 

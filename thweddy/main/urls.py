@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^latest$', cache_page(latest_threads, 60 * 30), name='latest-threads'),
     url(r'^mine$', user_threads, name='user-threads'),
     url(r'^ajax/lookup-thread$', ajax_lookup_thread, name='ajax-lookup-thread'),
+    url(r'^faq$', direct_to_template, {'template': 'main/faq.html'}, name='faq'),
 )
