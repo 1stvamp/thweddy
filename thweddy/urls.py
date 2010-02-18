@@ -8,5 +8,5 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^', include('thweddy.main.urls')),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT}),
-    (r'^admin/', include(admin.site.urls)),
+    (settings.ADMIN_URL, include(admin.site.urls)),
 )
