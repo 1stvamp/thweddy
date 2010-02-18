@@ -109,3 +109,8 @@ div#faq div#content ul li {
 div#faq div#content dl dd {
         margin-bottom: 2ex;
 }
+
+div#content,
+div#side {
+        margin-top: 2ex;
+}
