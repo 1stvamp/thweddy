@@ -78,7 +78,7 @@ def user_threads(request):
                 return user_login(request)
 
             try:
-                user = TwitterUserobjects.get(username=api.me().screen_name)
+                user = TwitterUser.objects.get(username=api.me().screen_name)
                 request.session['twitter_user'] = user
             except TwitterUser.DoesNotExist:
                 user = None
