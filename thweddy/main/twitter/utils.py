@@ -8,11 +8,14 @@ def _auth():
     return tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL)
 
 def user_login(request):
-    auth = _auth()
+    try:
+        auth = _auth()
 
-    redirect_url = auth.get_authorization_url()
+        redirect_url = auth.get_authorization_url()
 
-    request.session['twitter_auth_request_token'] = (auth.request_token.key, auth.request_token.secret,)
+        request.session['twitter_auth_request_token'] = (auth.request_token.key, auth.request_token.secret,)
+    except tweepy.TweepError:
+        return False
 
     # Redirect user to Twitter to authorize
     return redirect(redirect_url)

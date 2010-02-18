@@ -15,6 +15,7 @@ class Tweet(models.Model):
     tweet_id = models.CharField(max_length=255)
     sort = models.IntegerField()
     _original = None
+    _api = None
 
     class Meta:
         ordering = ('sort',)
@@ -25,7 +26,14 @@ class Tweet(models.Model):
     @property
     def original(self):
         if not  self._original:
-            self._original = get_anon_api().get_status(self.tweet_id)
+            try:
+                if self._api:
+                    api = self._api
+                else:
+                    api = get_anon_api()
+                self._original = api.get_status(self.tweet_id)
+            except tweepy.TweepError:
+                pass
         return self._original
 
 

@@ -114,3 +114,37 @@ div#content,
 div#side {
         margin-top: 2ex;
 }
+
+.fail {
+        background-color: #6CC5C3;
+        color: #FFFFFF;
+        padding-left: 10em;
+        font-weight: bold;
+}
+
+.failwhale {
+        font-size: 8em;
+}
+.failbirds {
+        color: #F15A22;
+}
+.failstrings,
+.failbirds {
+        margin-left: 2em;
+        font-size: 6em;
+}
+.failstrings {
+        font-weight: normal;
+}
+
+.failwhale,
+.failbirds,
+.failstrings {
+        margin-bottom: 0;
+        padding-bottom: 0;
+}
+
+.fail + p {
+    margin-top: 1em;
+    font-weight: bold;
+}

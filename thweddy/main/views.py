@@ -19,7 +19,14 @@ def verify_auth(request):
 def new_thread(request):
     api = get_api(request)
     if not api:
-        return user_login(request)
+        r = user_login(request)
+        if r:
+            return r
+        # Twitter fail, so display a nice message to the user
+        return render_to_response(
+            'main/failwhale.html',
+            {'path': request.path,}
+        )
 
     user = request.session.get('twitter_user', None)
     if not user:
@@ -75,7 +82,14 @@ def user_threads(request):
             api = get_api(request)
             if not api:
                 request.session['twitter_auth_return_url'] = urlresolvers.reverse('user-threads')
-                return user_login(request)
+                r = user_login(request)
+                if r:
+                    return r
+                # Twitter fail, so display a nice message to the user
+                return render_to_response(
+                    'main/failwhale.html',
+                    {'path': request.path,}
+                )
 
             try:
                 user = TwitterUser.objects.get(username=api.me().screen_name)
