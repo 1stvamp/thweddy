@@ -40,7 +40,8 @@ def new_thread(request):
             tweets = formset.save(commit=False)
             i = 0
             for t in tweets:
-                t.sort = i
+                if t.sort == '':
+                    t.sort = i
                 t.save()
                 thread.tweets.add(t)
                 i += 1
@@ -49,8 +50,6 @@ def new_thread(request):
             if request.session.has_key('my-threads-render'):
                 del request.session['my-threads-render']
             return redirect('view-thread', id=thread.id)
-        elif not formset.errors[0]:
-            print 'blah'
     else:
         formset = TweetFormSet(queryset=Tweet.objects.none())
 

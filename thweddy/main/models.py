@@ -13,12 +13,12 @@ class TwitterUser(models.Model):
 
 class Tweet(models.Model):
     tweet_id = models.CharField(max_length=255)
-    sort = models.IntegerField()
+    sort = models.IntegerField(blank=False, null=True, default=0)
     _original = None
     _api = None
 
     class Meta:
-        ordering = ('sort',)
+        ordering = ('sort', 'id',)
 
     def __unicode__(self):
         return u'Tweet %s' % (self.tweet_id,)

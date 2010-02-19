@@ -7,6 +7,11 @@ from thweddy.main.twitter.utils import *
 
 class TweetForm(forms.ModelForm):
     tweet_id = forms.CharField(label=u'Tweet ID or URL')
+    sort = forms.CharField(
+        widget=forms.HiddenInput(attrs={'class': 'sortOrder',}),
+        required=False,
+        initial=''
+    )
     class Meta:
         model = Tweet
 
@@ -19,6 +24,7 @@ class TweetForm(forms.ModelForm):
             if not tweet_id:
                 raise forms.ValidationError('Invalid Tweet ID or URL')
         return tweet_id
+
 
 class BaseTweetFormset(forms.models.BaseModelFormSet):
     def clean(self):
@@ -34,7 +40,7 @@ class BaseTweetFormset(forms.models.BaseModelFormSet):
 
 TweetFormSet = modelformset_factory(Tweet, form=TweetForm,
                                     formset=BaseTweetFormset,
-                                    fields=('tweet_id',), extra=1)
+                                    fields=('tweet_id', 'sort',), extra=1)
 
 class ThreadForm(forms.ModelForm):
     username = forms.CharField(required=False)

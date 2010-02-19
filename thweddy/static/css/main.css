@@ -22,6 +22,16 @@
         background-color: #ABABAB;
 }
 
+#thread_form #tweet_formsets p {
+        margin-left: 2em;
+}
+#thread_form #tweet_formsets p:hover:before {
+        float: left;
+        content: '\2195';
+        font-size: 2em;
+        margin-left: -1em;
+}
+
 #side ul {
         padding-left: 0.5em;
 }
@@ -146,6 +156,11 @@ div#side {
 }
 
 .fail + p {
-    margin-top: 1em;
-    font-weight: bold;
+        margin-top: 1em;
+        font-weight: bold;
+}
+
+.sort-highlight {
+        background-color: #EDECEB;
+        height: 4ex;
 }
