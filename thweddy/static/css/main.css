@@ -126,14 +126,15 @@ div#side {
         font-size: 8em;
 }
 .failbirds {
+        margin-left: 1.5em;
         color: #F15A22;
 }
 .failstrings,
 .failbirds {
-        margin-left: 2em;
         font-size: 6em;
 }
 .failstrings {
+        margin-left: 2em;
         font-weight: normal;
 }
 
