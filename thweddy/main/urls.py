@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^mine$', user_threads, name='user-threads'),
     url(r'^ajax/lookup-thread$', ajax_lookup_thread, name='ajax-lookup-thread'),
     url(r'^faq$', direct_to_template, {'template': 'main/faq.html'}, name='faq'),
+    url(r'^fail$', direct_to_template, {'template': 'main/failwhale.html'}, name='fail'),
 )
