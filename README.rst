@@ -33,6 +33,7 @@ To install from tar::
     tar xzf 1stvamp-thweddy-*.tar.gz
     mv 1stvamp-thweddy-*/ thweddy/
     cd thweddy
+    source env.sh
     rm -rf django tweepy thweddy/static/css/blueprint-css thweddy/static/js/django-dynamic-formset
     wget http://github.com/django/django/tarball/17ed5ce726ed716165a0d30b79692f6c6d0c6a33
     tar xzf django-django*.tar.gz
