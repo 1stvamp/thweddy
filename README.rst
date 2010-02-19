@@ -2,7 +2,7 @@
 
 `Thweddy` allows you to group a bunch of tweets into a single conversation thread, and then refer to a unique Thweddy URL to link back to (e.g. to show a conversation on Twitter to other friends).
 
-To make creating threads as easy as possible `Thweddy` has a reverse look up feature that will attempt to resolve a thread of tweets backwards from the last one in the conversation (unfortunately going forward from the first tweet won't work as the Twitter API currently doesn't support this; also please not that some tweets may not have the current IDs to do this look up).
+To make creating threads as easy as possible `Thweddy` has a reverse look up feature that will attempt to resolve a thread of tweets backwards from the last one in the conversation (unfortunately going forward from the first tweet won't work as the Twitter API currently doesn't support this; also please note that some tweets may not have the current IDs to do this look up).
 
 Installation and Setup
 ======================
