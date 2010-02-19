@@ -19,7 +19,9 @@ DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
-CACHE_BACKEND = ''
+# Uncomment if you want to use a caching backend such as memcached to speed up
+# certain views and actions
+#CACHE_BACKEND = ''
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -46,7 +48,7 @@ ADMIN_MEDIA_PREFIX = '/media/'
 ADMIN_URL = r'^admin/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '=8@f1tts9b@2%+4&v*s6*#mi(89j0cn4)xw(vus^ywefo5njw='
+SECRET_KEY = ''
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
