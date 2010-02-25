@@ -61,6 +61,52 @@ def new_thread(request):
     )
 
 
+def edit_thread(request, id):
+    thread = get_object_or_404(Thread, pk=id)
+
+    api = get_api(request)
+    if not api:
+        r = user_login(request)
+        if r:
+            return r
+        # Twitter fail, so display a nice message to the user
+        return render_to_response(
+            'main/failwhale.html',
+            {'path': request.path,}
+        )
+
+    user = request.session.get('twitter_user', None)
+    if not user:
+        user, user_created = TwitterUser.objects.get_or_create(username=api.me().screen_name)
+        request.session['twitter_user'] = user
+
+    if request.method == 'POST':
+        formset = TweetFormSet(request.POST, initial=thread)
+        if formset.is_valid():
+            thread = Thread.objects.create(user=user)
+            tweets = formset.save(commit=False)
+            i = 0
+            for t in tweets:
+                if t.sort == '':
+                    t.sort = i
+                t.save()
+                thread.tweets.add(t)
+                i += 1
+            thread.save()
+            # Invalidate my threads rendered template cache
+            if request.session.has_key('my-threads-render'):
+                del request.session['my-threads-render']
+            return redirect('view-thread', id=thread.id)
+    else:
+        formset = TweetFormSet(queryset=Tweet.objects.none(), initial=thread)
+
+    return render_to_response(
+        'main/edit.html',
+        {
+            'formset': formset,
+        }
+    )
+
 def view_thread(request, id):
     thread = get_object_or_404(Thread, pk=id)
     return render_to_response('main/view.html', {'thread': thread,})
