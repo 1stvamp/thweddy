@@ -6,6 +6,7 @@
 {% block current %}thread{% endblock %}
 
 {% block content %}
+    <a href="{% url edit-thread thread.id %}">Edit</a>
     {% for t in thread.tweets.all %}
         <div class="{% cycle 'bluebox' 'purplebox' %}">
             <div class="{% cycle 'bluebox' 'purplebox' %}_head">

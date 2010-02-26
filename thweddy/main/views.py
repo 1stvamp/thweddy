@@ -81,9 +81,8 @@ def edit_thread(request, id):
         request.session['twitter_user'] = user
 
     if request.method == 'POST':
-        formset = TweetFormSet(request.POST, initial=thread)
+        formset = TweetFormSet(request.POST, queryset=thread.tweets.all())
         if formset.is_valid():
-            thread = Thread.objects.create(user=user)
             tweets = formset.save(commit=False)
             i = 0
             for t in tweets:
@@ -98,7 +97,7 @@ def edit_thread(request, id):
                 del request.session['my-threads-render']
             return redirect('view-thread', id=thread.id)
     else:
-        formset = TweetFormSet(queryset=Tweet.objects.none(), initial=thread)
+        formset = TweetFormSet(queryset=thread.tweets.all())
 
     return render_to_response(
         'main/edit.html',

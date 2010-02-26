@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+{% load extras %}
+
+{% block title %}{% trans 'Edit thread' %} {{ formset.instance.id }}{% endblock %}
+{% block current %}edit{% endblock %}
+
+{% block head %}
+    <script type="text/javascript" src="{% setting 'STATIC_URL' %}js/django-dynamic-formset/src/jquery.formset.js"></script>
+    <script type="text/javascript">
+        $(function() {
+                $('#tweet_formsets').sortable({
+                    placeholder: 'sort-highlight',
+                    items: 'p'
+                    });
+                var tweet_sort_i = 0;
+                $('#tweet_formsets p').each(function() {
+                    $(this).attr('id', 'tweet-' + tweet_sort_i++);
+                });
+                $('#tweet_formsets p').formset({
+                    prefix: '{{ formset.prefix }}',
+                    addCssClass: 'formset-add-button',
+                    deleteCssClass: 'formset-delete-button',
+                    addText: 'Add',
+                    deleteText: 'Delete',
+                    added: function(row) {
+                        tweet_sort_i++;
+                        $(row).attr('id', 'tweet-' + tweet_sort_i);
+                    }
+                });
+                $('#tweet_formsets p input:first').after('<div class="throbber hide"></div>');
+                $('.formset-add-button').addClass('button positive');
+                $('.formset-delete-button').addClass('button negative');
+                $('form#thread_form').submit(function() {
+                    var orders = $('#tweet_formsets').sortable('toArray');
+                    for(var i=0; i < orders.length; i++) {
+                        if ($('#' + orders[i] + ' input:text')[0].value.replace(/^[\s\u3000]+|[\s\u3000]+$/g, '') != '') {
+
+                            $('#' + orders[i] + ' input.sortOrder:hidden').val(i);
+                        }
+                    }
+                });
+                if (!$('#tweet_formsets input:last').val()) {
+                    $('#tweet_formsets p:last').remove();
+                }
+        });
+</script>
+{% endblock %}
+
+{% block content %}
+    <form method="post" id="thread_form">
+        {{ formset.management_form }}
+        <fieldset>
+            <div id="tweet_formsets">
+            {% for form in formset.forms %}
+                {{ form.as_p }}
+                {% endfor %}
+            </div>
+            <div><button type="submit" id="thread-submit-button" class="button">Save</button></div>
+        </fieldset>
+    </form>
+{% endblock %}
