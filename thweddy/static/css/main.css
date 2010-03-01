@@ -174,3 +174,8 @@ div#side {
         background-color: #EDECEB;
         height: 4ex;
 }
+
+a#thread-edit-link {
+    float: right;
+    margin-right: 2em;
+}

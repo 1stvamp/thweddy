@@ -1,11 +1,13 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render_to_response, redirect, get_object_or_404
+from django.core.urlresolvers import reverse
 from django.core import urlresolvers
 
 from thweddy.main.models import *
 from thweddy.main.forms import *
 from thweddy.main.twitter.utils import *
 from thweddy.main.decorators import jsonify
+from thweddy.main.utils import expire_page
 
 
 def verify_auth(request):
@@ -95,6 +97,8 @@ def edit_thread(request, id):
             # Invalidate my threads rendered template cache
             if request.session.has_key('my-threads-render'):
                 del request.session['my-threads-render']
+            # Expire the in-memory cache of the view page
+            expire_page(reverse('view-thread', kwargs={'id': thread.id,}))
             return redirect('view-thread', id=thread.id)
     else:
         formset = TweetFormSet(queryset=thread.tweets.all())
@@ -108,7 +112,9 @@ def edit_thread(request, id):
 
 def view_thread(request, id):
     thread = get_object_or_404(Thread, pk=id)
-    return render_to_response('main/view.html', {'thread': thread,})
+
+    user = request.session.get('twitter_user', None)
+    return render_to_response('main/view.html', {'thread': thread, 'user': user,})
 
 
 def latest_threads(request):
