@@ -6,7 +6,7 @@
 {% block current %}thread{% endblock %}
 
 {% block content %}
-    {% ifequal user.id thread.user.id %}<a href="{% url edit-thread thread.id %}" id="thread-edit-link">Edit</a>{% endifequal %}
+    {% if user.id and thread.user.id %}{% ifequal user.id thread.user.id %}<a href="{% url edit-thread thread.id %}" id="thread-edit-link">Edit</a>{% endifequal %}{% endif %}
     {% for t in thread.tweets.all %}
         <div class="{% cycle 'bluebox' 'purplebox' %}">
             <div class="{% cycle 'bluebox' 'purplebox' %}_head">
