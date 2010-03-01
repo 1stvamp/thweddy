@@ -3,7 +3,6 @@
 }
 
 #thread_form a.button {
-        float: none;
         margin-right: 0.5em;
         margin-left: 0.5em;
 }
@@ -22,14 +21,25 @@
         background-color: #ABABAB;
 }
 
+#thread_form #tweet_formsets p label {
+        margin-right: 1em;
+}
+#thread_form #tweet_formsets p > * {
+        float: left;
+        margin-top: -1ex;
+}
 #thread_form #tweet_formsets p {
         margin-left: 2em;
+        margin-top: 1ex;
+        height: 4ex;
+        clear: both;
 }
 #thread_form #tweet_formsets p:hover:before {
         float: left;
         content: '\2195';
         font-size: 2em;
         margin-left: -1em;
+        margin-top: -1ex;
 }
 
 #side ul {

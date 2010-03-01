@@ -6,6 +6,7 @@ from thweddy.main.models import *
 from thweddy.main.twitter.utils import *
 
 class TweetForm(forms.ModelForm):
+    id = forms.CharField(widget=forms.HiddenInput(), required=False)
     tweet_id = forms.CharField(label=u'Tweet ID or URL')
     sort = forms.CharField(
         widget=forms.HiddenInput(attrs={'class': 'sortOrder',}),
@@ -40,7 +41,7 @@ class BaseTweetFormset(forms.models.BaseModelFormSet):
 
 TweetFormSet = modelformset_factory(Tweet, form=TweetForm,
                                     formset=BaseTweetFormset,
-                                    fields=('tweet_id', 'sort',), extra=1)
+                                    fields=('tweet_id', 'sort', 'id',), extra=1)
 
 class ThreadForm(forms.ModelForm):
     username = forms.CharField(required=False)
