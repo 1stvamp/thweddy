@@ -4,12 +4,14 @@ from django.shortcuts import redirect
 
 from thweddy.main.twitter.settings import *
 
-def _auth():
-    return tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, CALLBACK_URL)
+def _auth(cust_callback_url=None):
+    callback = cust_callback_url or CALLBACK_PATH
+    callback = "%s%s" % (BASE_CALLBACK_URL, callback,)
+    return tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET, callback)
 
-def user_login(request):
+def user_login(request, cust_callback_url=None):
     try:
-        auth = _auth()
+        auth = _auth(cust_callback_url)
 
         redirect_url = auth.get_authorization_url()
 

@@ -68,7 +68,7 @@ def edit_thread(request, id):
 
     api = get_api(request)
     if not api:
-        r = user_login(request)
+        r = user_login(request, reverse('edit-thread', kwargs={'id': id}))
         if r:
             return r
         # Twitter fail, so display a nice message to the user
@@ -81,6 +81,10 @@ def edit_thread(request, id):
     if not user:
         user, user_created = TwitterUser.objects.get_or_create(username=api.me().screen_name)
         request.session['twitter_user'] = user
+
+    # Check permissions to edit thread
+    if user.id != thread.user.id:
+        return HttpNotAllowedResponse('Naught, naughty, not your thread!')
 
     if request.method == 'POST':
         formset = TweetFormSet(request.POST, queryset=thread.tweets.all())
