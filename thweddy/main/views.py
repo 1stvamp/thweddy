@@ -156,22 +156,23 @@ def user_threads(request):
 
 @jsonify
 def ajax_lookup_thread(request):
-    tweet_id = request.GET.get('tweet_id', None)
+    original_tweet_id = request.GET.get('tweet_id', None)
     try:
-        int(tweet_id)
+        tweet_id = int(original_tweet_id)
     except:
-        tweet_id = parse_tweet_id(tweet_id)
+        tweet_id = parse_tweet_id(original_tweet_id)
 
     if not tweet_id:
-        return ''
+        return {'error': 'No tweet matching "%s" found.' % (original_tweet_id),}
 
     api = get_api(request)
     if not api:
         api = get_anon_api(request)
 
-    thread = [tweet_id]
+    thread = []
     tweet = api.get_status(tweet_id)
     if tweet:
+        thread.append(tweet_id)
         if tweet.in_reply_to_status_id:
             t = api.get_status(tweet.in_reply_to_status_id)
             while t:
@@ -182,5 +183,9 @@ def ajax_lookup_thread(request):
                     t = False
 
     thread.reverse()
+
+    if len(thread) <= 1:
+        thread = {'error': 'No related tweets found.'}
+
     return thread
 

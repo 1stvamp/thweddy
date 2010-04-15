@@ -41,8 +41,7 @@
                             "{% url ajax-lookup-thread %}",
                             {'tweet_id': val},
                             function (data) {
-                                if (data) {
-                                    $('div.throbber:first').hide();
+                                if (data && data['error'] == undefined) {
                                     offset = data.length - $('div#tweet_formsets p input:text').length;
                                     if (offset > 0) {
                                         for (var i = 0; i < offset; i++) {
@@ -53,7 +52,10 @@
                                     $.each(data, function (i, tweet_id) {
                                         $(inputs[i]).val(tweet_id);
                                     });
+                                } else if (data['error'] != undefined) {
+                                    alert(data['error']);
                                 }
+                                $('div.throbber:first').hide();
                             }
                         );
                     }
