@@ -34,8 +34,8 @@
                 $('.formset-add-button').after('<a href="#" class="button" id="lookup-tweet">Lookup thread *</a>');
                 $('#lookup-footnote').show();
                 $('#lookup-tweet').click(function () {
-                    var val = $('div#tweet_formsets p input').first().val();
-                    if (val) {
+                    var val = prompt('Thread ID to look up:', $('div#tweet_formsets p input').first().val());
+                    if (val != null) {
                         $('div.throbber:first').show();
                         $.getJSON(
                             "{% url ajax-lookup-thread %}",
