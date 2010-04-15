@@ -9,6 +9,8 @@ from thweddy.main.twitter.utils import *
 from thweddy.main.decorators import jsonify
 from thweddy.main.utils import expire_page
 
+from tweepy import TweepError
+
 
 def verify_auth(request):
     request.session['twitter_auth_verify_token'] = request.GET.get('oauth_verifier')
@@ -156,6 +158,14 @@ def user_threads(request):
 
 @jsonify
 def ajax_lookup_thread(request):
+    def _get_status(api, id):
+        try:
+            t = api.get_status(id)
+        except TweepError:
+            return None
+        else:
+            return t
+
     original_tweet_id = request.GET.get('tweet_id', None)
     try:
         tweet_id = int(original_tweet_id)
@@ -170,19 +180,19 @@ def ajax_lookup_thread(request):
         api = get_anon_api(request)
 
     thread = []
-    tweet = api.get_status(tweet_id)
+    tweet = _get_status(api, tweet_id)
     if tweet:
         thread.append(tweet_id)
         if tweet.in_reply_to_status_id:
-            t = api.get_status(tweet.in_reply_to_status_id)
+            t = _get_status(api, tweet.in_reply_to_status_id)
             while t:
                 thread.append(t.id)
                 if t.in_reply_to_status_id:
-                    t = api.get_status(t.in_reply_to_status_id)
+                    t = _get_status(api, t.in_reply_to_status_id)
                 else:
                     t = False
 
-    thread.reverse()
+        thread.reverse()
 
     if len(thread) <= 1:
         thread = {'error': 'No related tweets found.'}
