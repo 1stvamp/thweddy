@@ -22,3 +22,6 @@
 [submodule "thweddy/static/js/jquery"]
 	path = thweddy/static/js/jquery
 	url = git://github.com/jquery/jquery.git
+[submodule "twitter-text-python"]
+	path = twitter-text-python
+	url = http://github.com/BonsaiDen/twitter-text-python.git
